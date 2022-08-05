@@ -1,15 +1,15 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-primeira-pagina',
   templateUrl: './primeira-pagina.component.html',
-  styleUrls: ['./primeira-pagina.component.css']
+  styleUrls: ['./primeira-pagina.component.css'],
 })
-export class PrimeiraPaginaComponent implements OnInit {
+export class PrimeiraPaginaComponent {
+  constructor(private router: Router) {}
 
-  constructor() { }
-
-  ngOnInit(): void {
+  moverParaSegundaPagina() {
+    this.router.navigate(['segunda-pagina']);
   }
-
 }
