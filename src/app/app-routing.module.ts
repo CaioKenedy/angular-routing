@@ -11,6 +11,7 @@ const routes: Routes = [
     path: 'pagina-com-parametros/:id',
     component: PaginaComParametrosComponent,
   },
+  { path: 'lazy-loading', loadChildren: () => import('./lazy-loading/lazy-loading.module').then(m => m.LazyLoadingModule) },
 ];
 
 @NgModule({
