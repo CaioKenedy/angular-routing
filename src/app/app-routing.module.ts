@@ -1,6 +1,9 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { AuthGuard } from './auth.guard';
+import { LoginComponent } from './login/login.component';
 import { PaginaComParametrosComponent } from './pagina-com-parametros/pagina-com-parametros.component';
+import { PaginaProtegidaComponent } from './pagina-protegida/pagina-protegida.component';
 import { PrimeiraPaginaComponent } from './primeira-pagina/primeira-pagina.component';
 import { SegundaPaginaComponent } from './segunda-pagina/segunda-pagina.component';
 
@@ -11,7 +14,22 @@ const routes: Routes = [
     path: 'pagina-com-parametros/:id',
     component: PaginaComParametrosComponent,
   },
-  { path: 'lazy-loading', loadChildren: () => import('./lazy-loading/lazy-loading.module').then(m => m.LazyLoadingModule) },
+  {
+    path: 'lazy-loading',
+    loadChildren: () =>
+      import('./lazy-loading/lazy-loading.module').then(
+        (m) => m.LazyLoadingModule
+      ),
+  },
+  {
+    path: 'pagina-protegida',
+    component: PaginaProtegidaComponent,
+    canActivate: [AuthGuard],
+  },
+  {
+    path: 'login',
+    component: LoginComponent,
+  },
 ];
 
 @NgModule({
