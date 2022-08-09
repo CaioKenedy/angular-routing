@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { AuthService } from '../auth.service';
 
 @Component({
   selector: 'app-login',
@@ -8,9 +10,18 @@ import { Component, OnInit } from '@angular/core';
 export class LoginComponent implements OnInit {
   email = '';
   senha = '';
-  constructor() {}
+  constructor(private auth: AuthService, private router: Router) {}
 
   ngOnInit(): void {}
 
-  login() {}
+  login() {
+    if (this.auth.login(this.email, this.senha)) {
+      this.router.navigate(['pagina-protegida']);
+      return;
+    }
+
+    alert('Login está inválido');
+    this.senha = '';
+    this.email = '';
+  }
 }

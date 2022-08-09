@@ -4,11 +4,25 @@ import { Injectable } from '@angular/core';
   providedIn: 'root',
 })
 export class AuthService {
+  acessToken =
+    'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c';
+
   constructor() {}
 
-  estaAutenticado(): boolean {}
+  estaAutenticado(): boolean {
+    return !!sessionStorage.getItem('access-token');
+  }
 
-  login(email: string, senha: string) {}
+  login(email: string, senha: string): boolean {
+    if (email === 'admin@admin.com.br' && senha == '123456') {
+      sessionStorage.setItem('access-token', this.acessToken);
+      return true;
+    }
 
-  logout() {}
+    return false;
+  }
+
+  logout() {
+    sessionStorage.clear;
+  }
 }
